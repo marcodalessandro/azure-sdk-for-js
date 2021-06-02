@@ -264,8 +264,9 @@ export class SearchClient<T> implements IndexDocumentsClient<T> {
 
       const modifiedResults = utils.generatedSearchResultToPublicSearchResult<T>(results);
 
-      const converted: SearchDocumentsPageResult<T> = {
+      const converted: any = {
         results: modifiedResults,
+        took: (result._response as any).headers._headersMap['elapsed-time'],
         count,
         coverage,
         facets,
